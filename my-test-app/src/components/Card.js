@@ -43,11 +43,13 @@ function Card({ handleRemoveCard, handleEditCard, card, title, content="Add Some
             <Button 
                 name="like" 
                 card={card}
+                handleEditCard={handleEditCard}
                 // 🚧 Pass handleEditCard as prop
             />
             <Button 
                 name="trash" 
                 card={card}
+                handleRemoveCard={handleRemoveCard}
                 // 🚧 Pass handleRemoveCard as prop
             />
         </div>

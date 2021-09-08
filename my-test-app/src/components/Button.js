@@ -1,16 +1,13 @@
 import { useState } from 'react';
 
 function Button({ handleRemoveCard, handleEditCard, card, name, toggleVisibility }) {
-
     // Create ONE state that will keep track of whether
     // a Button has been toggled, "isToggled"
     const [ isToggled, setToggled ] = useState(false);
 
-    function toggleButton() {
-
+    function toggleButton(event) {
         // Toggle value of "isToggled" state
         setToggled(!isToggled);
-
         // If "toggleVisibility" is passed as a prop,
         // invoke the function to toggle the "isVisible"
         // state in Card.js 
@@ -27,15 +24,15 @@ function Button({ handleRemoveCard, handleEditCard, card, name, toggleVisibility
         return (
             // 🚧 Set handleEditCard() as onClick behavior
             // ❗ Remember to pass a function reference, not invocation
-            <button className="button" onClick={toggleButton}>
-                { isToggled ? '❤️' : '♡' }
+            <button className="button" onClick={()=>handleEditCard(card)}>
+                { card.liked ? '❤️' : '♡' }
             </button>
         );
     } else {
         return (
             // 🚧 Set handleRemoveCard() as onClick behavior
             // ❗ Remember to pass a function reference, not invocation
-            <button className="button">
+            <button className="button" onClick={()=>handleRemoveCard(card)}>
                 🗑️
             </button>
         );

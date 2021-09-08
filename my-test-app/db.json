@@ -8,14 +8,15 @@
     },
     {
       "id": 2,
-      "title": "Second Card",
-      "content": "Here's My Second Card",
+      "title": "Second",
+      "content": "2nd",
       "liked": false
     },
     {
       "id": 3,
-      "title": "Third Card",
-      "liked": false
+      "title": "third",
+      "content": "3rd",
+      "liked": true
     }
   ]
 }
