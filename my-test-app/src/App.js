@@ -35,26 +35,11 @@ function App() {
   const [addCard, setAddCard] = useState(false);
   const [editCard, setEditCard] = useState(false);
 
-<<<<<<< HEAD
-=======
-  // 🚧 Add states to manage POST (addCard), DELETE (removeCard), and PATCH (editCard)
-  // ❗ Why are these states necessary?
-  const [ issueRequest, setIssueRequest ] = useState(false)
-  
-  // ...
-  
->>>>>>> ddd36416aa0afbf3ba22e4989564ab0249042da0
   // Use fetch to retrieve Cards from db.json and
   // set as our initial value for "cards"
   function loadCards() {
     fetch("http://localhost:3001/cards")
-      
-      // Returns a promise which resolves with the result of parsing the body text as JSON
-      // "res.json" parses JSON response into native JavaScript objects
       .then(res => res.json())
-      
-      // data => JSON data parsed by "res.json()" call
-      // We can see "data" logged in our console
       .then(data => {
         console.log("Data fetched!", data);
         setCards(data);
@@ -65,10 +50,10 @@ function App() {
     console.log("Fetching data...");
     
     // Invoke "loadCards" via useEffect 
-    loadCards();
+    loadCards(); 
 
   // ❗ What states will we need to add to our dependencies array and why?
-  }, [issueRequest]);
+  }, []);
 
   function handleAddCard(newCard) {
     
@@ -80,7 +65,6 @@ function App() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(newCard)
-<<<<<<< HEAD
     })
     .then(()=>{
    //  ❗ Remember to invoke loadCards() and toggle "addCard" state after successful fetch  
@@ -94,25 +78,12 @@ function App() {
     
     // Pass new array to "setState."
     setCards(newCardsArray)
-=======
-    }).then(
-
-        // Comma is necessary because we are passing loadCards() and setAddCard(!addCard)
-        // as arguments to "then"
-          
-        // State change triggers App component re-render
-        // because we added "addCard" to list of 
-        // dependencies
-        setIssueRequest(!issueRequest)
-    );
->>>>>>> ddd36416aa0afbf3ba22e4989564ab0249042da0
   }
 
   // 🚧 Add function to handle DELETE (handleRemoveCard)
   // ❗ Remember to invoke loadCards() and toggle "removeCard" state after successful fetch
   
   function handleRemoveCard(card) {
-<<<<<<< HEAD
      fetch(`http://localhost:3001/cards/${card.id}`, {
        method: "DELETE",
        headers: {
@@ -124,21 +95,10 @@ function App() {
       loadCards()
       setAddCard(!addCard)
     });
-=======
-      fetch(`http://localhost:3001/cards/${card.id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json"
-      }
-      }).then(
-        // ❗ Toggle "setRemoveCard" state after successful fetch
-        setIssueRequest(!issueRequest)
-    );
->>>>>>> ddd36416aa0afbf3ba22e4989564ab0249042da0
   }
 
   // 🚧 Add function to handle PATCH (handleEditCard)
-  // ❗ Remember to toggle "issueRequest" after successful fetch
+  // ❗ Remember to invoke loadCards() and toggle "editCard" after successful fetch
   
     function handleEditCard(card) {
       fetch(`http://localhost:3001/cards/${card.id}`, {
@@ -149,18 +109,11 @@ function App() {
         body: JSON.stringify({
           liked: !card.liked
         })
-<<<<<<< HEAD
       }).then(()=>{
           //❗ Remember to invoke loadCards() and toggle "editCard" state after successful fetch
           loadCards()
           setEditCard(!editCard)
       })
-=======
-      }).then(
-          // ❗ Toggle "issueRequest" state after successful fetch   
-          setIssueRequest(!issueRequest)
-     );
->>>>>>> ddd36416aa0afbf3ba22e4989564ab0249042da0
     }
 
   return (
@@ -183,10 +136,9 @@ function App() {
       {/* CardList Component */}
       <CardList 
         cards={cards}
-
-        // 🚧 Pass handleRemoveCard() and handleEditCard() as props
         handleRemoveCard={handleRemoveCard}
         handleEditCard={handleEditCard}
+        // 🚧 Pass handleRemoveCard() and handleEditCard as props
       />
     </div>
   );
